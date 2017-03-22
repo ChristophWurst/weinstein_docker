@@ -11,9 +11,9 @@ services:
         links:
             - database
             - cache
-        volumes:
-            - ./storage:/var/www/storage
         env_file: .env.prod
+        volumes:
+            - /var/www/storage
         environment:
             - "DB_PORT=3306"
             - "DB_HOST=database"
@@ -21,6 +21,8 @@ services:
             - "DB_PASS=123456"
             - "REDIS_PORT=6379"
             - "REDIS_HOST=cache"
+            - "CACHE_DRIVER=redis"
+            - "SESSION_DRIVER=redis"
     database:
         image: mariadb:10.0
         environment:
@@ -28,9 +30,8 @@ services:
             - "MYSQL_DATABASE=weinstein"
             - "MYSQL_USER=weinstein"
             - "MYSQL_PASSWORD=123456"
-        ports:
-            - "33061:3306"
+        volumes:
+            - ./maria-prod:/var/lib/mysql
     cache:
         image: redis:3.0
-        ports:
-            - "63791:6379"
+
