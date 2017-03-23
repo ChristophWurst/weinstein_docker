@@ -2,8 +2,6 @@ version: '2'
 services:
     web:
         image: weinstein/web
-        ports:
-            - "8080:80"
         links:
             - app
         restart: always
