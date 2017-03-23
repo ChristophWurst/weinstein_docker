@@ -3,3 +3,5 @@
 !.env.example
 
 storage
+maria-prod
+maria-testing
