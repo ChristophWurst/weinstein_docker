@@ -6,6 +6,7 @@ services:
             - "8080:80"
         links:
             - app
+        restart: always
     app:
         image: weinstein/app
         links:
@@ -24,6 +25,7 @@ services:
             - "REDIS_HOST=cache"
             - "CACHE_DRIVER=redis"
             - "SESSION_DRIVER=redis"
+        restart: always
     database:
         image: mariadb:10.0
         environment:
@@ -33,6 +35,8 @@ services:
             - "MYSQL_PASSWORD=123456"
         volumes:
             - ./maria-prod:/var/lib/mysql
+        restart: always
     cache:
         image: redis:3.0
+        restart: always
 
