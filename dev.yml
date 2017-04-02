@@ -1,0 +1,30 @@
+version: '2'
+services:
+    web:
+        image: weinstein/web:latest
+        ports:
+            - "8082:80"
+    app:
+        build:
+            context: "$WEINSTEIN_ROOT/"
+            dockerfile: "app.dev"
+        env_file: .env.dev
+        environment:
+            - "DB_USERNAME=weinstein"
+            - "DB_PASSWORD=123456"
+            - "REDIS_PORT=6379"
+            - "REDIS_HOST=cache"
+            - "CACHE_DRIVER=redis"
+            - "SESSION_DRIVER=redis"
+        volumes:
+            - "$WEINSTEIN_ROOT:/var/wwww"
+    database:
+        environment:
+            - "MYSQL_ROOT_PASSWORD=secret"
+            - "MYSQL_USER=weinstein"
+            - "MYSQL_PASSWORD=123456"
+        volumes:
+            - ./maria-dev:/var/lib/mysql
+        ports:
+            - "33061:3361"
+
