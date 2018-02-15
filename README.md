@@ -1,2 +1,2 @@
-# weinstein_docker
-Docker composition files for Weinstein
+# wiwu_docker
+Docker composition files for www.winzerhof-wurst.at

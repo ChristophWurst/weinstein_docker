@@ -1,33 +1,30 @@
-version: '2'
+version: '3.2'
 services:
     web:
-        image: weinstein/web
         links:
-            - app
-        restart: always
-    app:
-        links:
-            - database
             - cache
-        env_file: .env.prod
+            - database
         environment:
             - "DB_PORT=3306"
             - "DB_HOST=database"
             - "DB_DATABASE=weinstein"
             - "DB_USERNAME=weinstein"
-            - "DB_PASSWORD=123456"
+            - "DB_PASSWORD=weinstein123"
             - "REDIS_PORT=6379"
             - "REDIS_HOST=cache"
-            - "CACHE_DRIVER=redis"
-            - "SESSION_DRIVER=redis"
+            - "CACHE_DRIVER=array"
+            - "SESSION_DRIVER=file"
         restart: always
     database:
         image: mariadb:10.0
+        command:
+            - --character-set-server=utf8mb4
+            - --collation-server=utf8mb4_unicode_ci
         environment:
             - "MYSQL_ROOT_PASSWORD=secret"
             - "MYSQL_DATABASE=weinstein"
             - "MYSQL_USER=weinstein"
-            - "MYSQL_PASSWORD=123456"
+            - "MYSQL_PASSWORD=weinstein123"
         restart: always
     cache:
         image: redis:3.0
