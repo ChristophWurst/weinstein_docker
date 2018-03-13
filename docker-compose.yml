@@ -5,15 +5,13 @@ services:
             - cache
             - database
         environment:
+            - "APP_URL=http://localhost:8082"
             - "DB_PORT=3306"
             - "DB_HOST=database"
             - "DB_DATABASE=weinstein"
             - "DB_USERNAME=weinstein"
             - "DB_PASSWORD=weinstein123"
-            - "REDIS_PORT=6379"
-            - "REDIS_HOST=cache"
-            - "CACHE_DRIVER=array"
-            - "SESSION_DRIVER=file"
+            - "SESSION_DRIVER=redis"
         restart: always
     database:
         image: mariadb:10.0
