@@ -10,7 +10,7 @@ services:
             - "DB_HOST=database"
             - "DB_DATABASE=weinstein"
             - "DB_USERNAME=weinstein"
-            - "DB_PASSWORD=weinstein123"
+            - "DB_PASSWORD=123456"
             - "SESSION_DRIVER=redis"
         restart: always
     database:
@@ -22,7 +22,7 @@ services:
             - "MYSQL_ROOT_PASSWORD=secret"
             - "MYSQL_DATABASE=weinstein"
             - "MYSQL_USER=weinstein"
-            - "MYSQL_PASSWORD=weinstein123"
+            - "MYSQL_PASSWORD=123456"
         restart: always
     cache:
         image: redis:3.0
