@@ -7,4 +7,6 @@ services:
         env_file: .env.prod
     database:
         volumes:
-            - ./maria-prod:/var/lib/mysql
+            - ws-prod-db:/var/lib/mysql
+volumes:
+    ws-prod-db:
