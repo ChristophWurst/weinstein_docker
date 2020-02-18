@@ -7,6 +7,8 @@ services:
             - "8083:80"
         volumes:
             - "$WEINSTEIN_ROOT:/var/www"
+            - ws-dev-storage:/var/www/storage/app
+            - ws-dev-public-storage:/var/www/storage/app_public
         env_file: .env.dev
 
     database:
@@ -17,3 +19,5 @@ services:
 
 volumes:
     ws-dev-db:
+    ws-dev-storage:
+    ws-dev-public-storage:

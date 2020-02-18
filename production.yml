@@ -5,8 +5,13 @@ services:
         ports:
             - "8080:80"
         env_file: .env.prod
+        volumes:
+            - ws-prod-storage:/var/www/storage/app
+            - ws-prod-public-storage:/var/www/storage/app_public
     database:
         volumes:
             - ws-prod-db:/var/lib/mysql
 volumes:
     ws-prod-db:
+    ws-prod-storage:
+    ws-prod-public-storage:
