@@ -10,6 +10,14 @@ services:
             - ws-dev-storage:/var/www/storage/app
             - ws-dev-public-storage:/var/www/storage/app_public
         env_file: .env.dev
+    queue-worker:
+        build:
+            context: ./dev/webserver
+        volumes:
+            - "$WEINSTEIN_ROOT:/var/www"
+            - ws-dev-storage:/var/www/storage/app
+            - ws-dev-public-storage:/var/www/storage/app_public
+        env_file: .env.dev
 
     database:
         volumes:

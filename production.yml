@@ -8,6 +8,12 @@ services:
         volumes:
             - ws-prod-storage:/var/www/storage/app
             - ws-prod-public-storage:/var/www/storage/app_public
+    queue-worker:
+        image: weinstein/web:production
+        env_file: .env.prod
+        volumes:
+            - ws-prod-storage:/var/www/storage/app
+            - ws-prod-public-storage:/var/www/storage/app_public
     database:
         volumes:
             - ws-prod-db:/var/lib/mysql

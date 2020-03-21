@@ -13,6 +13,20 @@ services:
             - "DB_PASSWORD=123456"
             - "SESSION_DRIVER=redis"
         restart: always
+    queue-worker:
+        links:
+            - cache
+            - database
+        command: php ../artisan queue:work
+        environment:
+            - "APP_URL=http://localhost:8082"
+            - "DB_PORT=3306"
+            - "DB_HOST=database"
+            - "DB_DATABASE=weinstein"
+            - "DB_USERNAME=weinstein"
+            - "DB_PASSWORD=123456"
+            - "SESSION_DRIVER=redis"
+        restart: always
     database:
         image: mariadb:10.2
         command:
