@@ -13,6 +13,7 @@ services:
     queue-worker:
         build:
             context: ./dev/webserver
+        command: php ../artisan queue:work
         volumes:
             - "$WEINSTEIN_ROOT:/var/www"
             - ws-dev-storage:/var/www/storage/app
